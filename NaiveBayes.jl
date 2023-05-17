@@ -25,3 +25,9 @@ function std_mean(x) # Calculates standard deviation and mean of features.
     end
     return std , mean
 end
+
+
+function distribution(x,std,mean) # Gaussian Distribution Function
+    exponent = exp.(-((x .- mean).^2 ./ (2 .* std .^ 2)))
+    return exponent ./ (sqrt(2*π)*std)
+end
