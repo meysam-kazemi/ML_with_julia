@@ -1,10 +1,10 @@
-import Plots , Statistics
+import Statistics
 
 # Build a simple regression
 # The model needs to a loss function
 MSE(y,ŷ) = sum((y .- ŷ).^2) / length(y)
 
-function simple_regression(X , Y , epochs , lr = 0.01)
+function LinearRegression(X , Y , epochs , lr = 0.01)
     error = []
     len = length(Y)
     a0 , a1 = (0,0) # Coefficients
