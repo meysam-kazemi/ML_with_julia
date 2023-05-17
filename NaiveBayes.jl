@@ -45,3 +45,30 @@ function fit(x,y)
     end
     return class_summary        
 end
+
+
+# Predict classes
+function predict(x,class_summary)
+    MAPs = []
+    for row in eachrow(x)
+        joint_proba = Dict()
+        for item in class_summary
+            class_name , features = item.first,item.second
+            total_features = length(features["summary"])
+            likelihood =1
+
+            for idx in 1:total_features
+                feature = row[idx]
+                mean_ = features["summary"]["mean"][idx]
+                std_ = features["summary"]["std"][idx]
+                normal_proba = distribution(feature,std_,mean_)
+                likelihood *= normal_proba
+            end
+            prior_proba = features["prior_proba"]
+            joint_proba[class_name] = prior_proba * likelihood
+        end
+        MAP = reduce((x,y)->joint_proba[x]>joint_proba[y] ? x : y,keys(joint_proba)) 
+        append!(MAPs,MAP)
+    end
+    return MAPs
+end
