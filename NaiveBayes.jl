@@ -11,7 +11,17 @@ function seprate_classes(x,y) # Separate the dataset into a subset of data for e
             seprated_classes[class_name] = Array{Float64}(undef,0,4) # empty array : size -> 0,4
         end
         seprated_classes[class_name] = [seprated_classes[class_name];feature];
-    end
-    
+    end    
     return seprated_classes
+end
+
+
+function std_mean(x) # Calculates standard deviation and mean of features.
+    std = []
+    mean = []
+    for feature in eachcol(x)
+        append!(std,Statistics.std(feature))
+        append!(mean,Statistics.mean(feature))
+    end
+    return std , mean
 end
