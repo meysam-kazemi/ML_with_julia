@@ -31,3 +31,17 @@ function distribution(x,std,mean) # Gaussian Distribution Function
     exponent = exp.(-((x .- mean).^2 ./ (2 .* std .^ 2)))
     return exponent ./ (sqrt(2*π)*std)
 end
+
+
+function fit(x,y)
+    classes = seprate_classes(x,y)
+    class_summary = Dict() # Save std and mean
+    for item in classes
+        class_name , feature_val = item.first , item.second
+        std,mean = std_mean(feature_val);
+        summary = Dict("mean"=>mean,"std"=>std);
+        class_summary[class_name] = Dict("prior_proba"=>length(feature_val)/size(x,1),
+                                        "summary"=>summary)
+    end
+    return class_summary        
+end
