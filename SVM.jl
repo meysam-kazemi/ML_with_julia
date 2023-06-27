@@ -37,12 +37,12 @@ function predict(svm::SvmStruct,x)
 end
 
 
-# TEST
-#Input data
-x = Float32.([0 2 -1;-2 4 -1;4 1 -1;1 6 -1;2 4 -1;6 2 -1]);
-# Output label
-y = [-1 -1 -1 1 1 1];
-svm = SVM(x,y)
+# # TEST
+# #Input data
+# x = Float32.([0 2 -1;-2 4 -1;4 1 -1;1 6 -1;2 4 -1;6 2 -1]);
+# # Output label
+# y = [-1 -1 -1 1 1 1];
+# svm = SVM(x,y)
 
-testX = Float32.([5 4 -1;-2 -5 -1;3 1 -1;1 1 -1])
-predict(svm,)
+# testX = Float32.([5 4 -1;-2 -5 -1;3 1 -1;1 1 -1])
+# predict(svm,testX)
