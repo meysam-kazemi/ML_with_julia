@@ -28,6 +28,10 @@ function SVM(x,y,lr=1,epoch=100000)
     return svm
 end
 
+function predict(svm::SvmStruct)
+    return sign.(svm.output)
+end
+
 
 
 
@@ -38,3 +42,4 @@ x = Float32.([0 2 -1;-2 4 -1;4 1 -1;1 6 -1;2 4 -1;6 2 -1]);
 y = [-1 -1 -1 1 1 1];
 
 svm = SVM(x,y)
+predict(svm)
