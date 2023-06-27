@@ -4,7 +4,7 @@ mutable struct SvmStruct
     epoch :: Int;
     lr :: Float32; # Learning Rate
     w :: Vector{Any}; # weigtht
-    output :: Vector{Any}; # save outputs
+    train_output :: Vector{Any}; # save outputs
 end
 
 function SVM(x,y,lr=1,epoch=100000)
@@ -23,16 +23,18 @@ function SVM(x,y,lr=1,epoch=100000)
         end
     end
     for row in eachrow(x)
-        append!(svm.output,row' * svm.w) # Add the output of the model in the output variable
+        append!(svm.train_output,row' * svm.w) # Add the output of the model in the train_output variable
     end
     return svm
 end
 
-function predict(svm::SvmStruct)
-    return sign.(svm.output)
+function predict(svm::SvmStruct,x)
+    output = []
+    for row in eachrow(x)
+        append!(output,row' * svm.w)
+    end
+    return sign.(output)
 end
-
-
 
 
 # TEST
@@ -40,6 +42,7 @@ end
 x = Float32.([0 2 -1;-2 4 -1;4 1 -1;1 6 -1;2 4 -1;6 2 -1]);
 # Output label
 y = [-1 -1 -1 1 1 1];
-
 svm = SVM(x,y)
-predict(svm)
+
+testX = Float32.([5 4 -1;-2 -5 -1;3 1 -1;1 1 -1])
+predict(svm,)
