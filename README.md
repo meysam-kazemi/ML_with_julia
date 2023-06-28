@@ -5,7 +5,7 @@ After that, I write better codes so that they are more efficient
 - [x] Linear Regression
 - [x] Logistic Regression
 - [x] Naive Bayes
-- [ ] SVM
+- [x] SVM
 - [ ] K-Means
 - [ ] KNN
 - [ ] Random Forest
